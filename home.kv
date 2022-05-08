@@ -1,0 +1,47 @@
+#:kivy 2.1.0
+MDScreen:
+    name: "home"
+
+    MDBottomNavigation:
+        panel_color: rgba(65, 105, 225, 255)
+        selected_color_background: rgba(65, 105, 225, 255)
+        text_color_active: 0, 0, 0, 1
+
+        MDBottomNavigationItem:
+            name: 'screen 1'
+            text: 'Attendance'
+            icon: "calendar-multiple-check"
+            badge_icon: "numeric-10"
+
+            MDLabel:
+                text: 'Attendance'
+                halign: 'center'
+
+        MDBottomNavigationItem:
+            name: 'screen 2'
+            text: 'Class'
+            icon: 'account-group'
+            badge_icon: "numeric-5"
+
+            MDLabel:
+                text: 'Class'
+                halign: 'center'
+
+        MDBottomNavigationItem:
+            name: 'screen 3'
+            text: 'Student'
+            icon: 'account-box'
+
+            MDLabel:
+                text: 'Student'
+                halign: 'center'
+        
+        MDBottomNavigationItem:
+            name: 'screen 4'
+            text: 'User Info'
+            icon: 'account-details'
+
+            MDLabel:
+                text: 'User Info'
+                halign: 'center'
+        
