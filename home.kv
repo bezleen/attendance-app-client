@@ -23,9 +23,19 @@ MDScreen:
             icon: 'account-group'
             badge_icon: "numeric-5"
 
-            MDLabel:
-                text: 'Class'
-                halign: 'center'
+            MDList: 
+                id: list1
+                OneLineAvatarIconListItem:
+                    on_release: print("Click!")
+
+                    IconLeftWidget:
+                        icon: "github"
+
+                OneLineAvatarIconListItem:
+                    on_release: print("Click 2!")
+
+                    IconLeftWidget:
+                        icon: "gitlab"
 
         MDBottomNavigationItem:
             name: 'screen 3'
@@ -40,8 +50,19 @@ MDScreen:
             name: 'screen 4'
             text: 'User Info'
             icon: 'account-details'
-
+            on_tab_release:
+                app.user_info()
             MDLabel:
-                text: 'User Info'
+                id: email
+                text: ''
                 halign: 'center'
+            MDLabel:
+                id: name
+                text: ''
+                halign: 'center'
+            MDLabel:
+                id: phone
+                text: ''
+                halign: 'center'
+                
         

@@ -1,5 +1,6 @@
 #:kivy 2.1.0
 MDScreen:
+    id: signup
     name: "signup"
     MDFloatLayout:
         md_bg_color: 1, 1, 1, 1
@@ -29,6 +30,7 @@ MDScreen:
             size_hint: .7, .07
             pos_hint: {"center_x": .5, "center_y": .73}
             TextInput:
+                id: email
                 hint_text: "Email"
                 font_name: "MPoppins"
                 size_hint_y: .75
@@ -47,26 +49,12 @@ MDScreen:
         MDFloatLayout:
             size_hint: .7, .07
             pos_hint: {"center_x": .5, "center_y": .65}
-            TextInput:
-                hint_text: "Avatar"
-                font_name: "MPoppins"
-                size_hint_y: .75
-                pos_hint: {"center_x": .43, "center_y": .5}
-                background_color: 1, 1, 1, 0
-                foreground_color: rgba(0, 0, 59, 255)
-                font_size: "14sp"
-                cursor_width: "2sp"
-                multiline: False
-            MDFloatLayout:
-                pos_hint: {"center_x": .45, "center_y": 0}
-                size_hint_y: .03
-            # Mau vien duoi
-                md_bg_color: rgba(65, 105, 225, 255)
 
         MDFloatLayout:
             size_hint: .7, .07
             pos_hint: {"center_x": .5, "center_y": .57}
             TextInput:
+                id: phone
                 hint_text: "Phone"
                 font_name: "MPoppins"
                 size_hint_y: .75
@@ -86,6 +74,7 @@ MDScreen:
             size_hint: .7, .07
             pos_hint: {"center_x": .5, "center_y": .49}
             TextInput:
+                id: name
                 hint_text: "Name"
                 font_name: "MPoppins"
                 size_hint_y: .75
@@ -105,6 +94,7 @@ MDScreen:
             size_hint: .7, .07
             pos_hint: {"center_x": .5, "center_y": .40}
             TextInput:
+                id: pw1
                 hint_text: "Password"
                 font_name: "MPoppins"
                 size_hint_y: .75
@@ -125,6 +115,7 @@ MDScreen:
             size_hint: .7, .07
             pos_hint: {"center_x": .5, "center_y": .33}
             TextInput:
+                id: pw2
                 hint_text: "Confirm password"
                 font_name: "MPoppins"
                 size_hint_y: .75
@@ -148,8 +139,9 @@ MDScreen:
             background_color: 0, 0, 0, 0
             font_name: "BPoppins"
             on_release:
-                root.manager.transition.direction = "left"
-                root.manager.current = "login"
+                #root.manager.transition.direction = "left"
+                #root.manager.current = "login"
+                app.signup()
             canvas.before:
                 Color:
                     rgb: rgba(65, 105, 225, 255)
