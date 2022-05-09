@@ -10,7 +10,7 @@ from kivymd.uix.list import OneLineAvatarIconListItem
 from kivy.lang import Builder
 from kivy.core.window import Window
 Window.size = (360,620)
-
+import os
 import execute_api.login as lg
 import execute_api.signup as su
 import execute_api.user_info as ui
@@ -62,6 +62,7 @@ class MainApp(MDApp):
     
     
 if __name__ == "__main__":
-    LabelBase.register(name='MPoppins', fn_regular="/home/nhandng/ml_projects/Poppins/Poppins-Medium.ttf")
-    LabelBase.register(name='BPoppins', fn_regular="/home/nhandng/ml_projects/Poppins/Poppins-SemiBold.ttf")
+    LabelBase.register(name='MPoppins', fn_regular=os.path.join(os.path.abspath(os.path.dirname(os.path.dirname(__file__))), 'fonts/Poppins-Medium.ttf'))
+    LabelBase.register(name='BPoppins', fn_regular=os.path.join(os.path.abspath(os.path.dirname(os.path.dirname(__file__))), 'fonts/Poppins-SemiBold.ttf'))
+    # LabelBase.register(name='BPoppins', fn_regular="fontsPoppins-SemiBold.ttf")
     MainApp().run()
