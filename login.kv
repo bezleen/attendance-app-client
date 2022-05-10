@@ -1,7 +1,5 @@
 #:kivy 2.1.0
-MDScreen: 
-    id: login                       
-    name: "login"
+<Login> :
     MDFloatLayout:
         md_bg_color: 1, 1, 1, 1
         MDIconButton:
@@ -84,12 +82,7 @@ MDScreen:
                     size: self.size
                     pos: self.pos
                     radius: [5]            
-        MDTextButton:
-            text: "Forgot Password?"
-            pos_hint: {"center_x": .5, "center_y": .28}
-            color: rgba(65, 105, 225, 255)
-            font_size: "12sp"
-            font_name: "BPoppins"
+        
         MDLabel:
             text: "Don't have an account?"
             font_name: "BPoppins"
@@ -98,7 +91,7 @@ MDScreen:
             color: rgba(0, 0, 59, 255)
         MDTextButton:
             text: "Sign up"
-            pos_hint: {"center_x": .75, "center_y": .04}
+            pos_hint: {"center_x": .66, "center_y": .04}
             color: rgba(65, 105, 225, 255)
             font_size: "11sp"
             font_name: "BPoppins"

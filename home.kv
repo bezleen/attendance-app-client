@@ -1,7 +1,5 @@
 #:kivy 2.1.0
-MDScreen:
-    name: "home"
-
+<Home> :
     MDBottomNavigation:
         panel_color: rgba(65, 105, 225, 255)
         selected_color_background: rgba(65, 105, 225, 255)
@@ -22,20 +20,22 @@ MDScreen:
             text: 'Class'
             icon: 'account-group'
             badge_icon: "numeric-5"
+            on_tab_release:
+                # app.clear_screen()
+                app.list_class_1()
+            Button:
+                icon: 'plus-circle'
+                pos_hint: {"center_x": .10, "center_y": .10}
+                background_color: 0, 0, 0, 0
+                font_name: "BPoppins"
+                # on_release:
+                #     app.list_class_1()
+                #     root.manager.transition.direction = "left"
+                #     root.manager.current = "home"
+            ScrollView:
+                MDList:
+                    id: container
 
-            MDList: 
-                id: list1
-                OneLineAvatarIconListItem:
-                    on_release: print("Click!")
-
-                    IconLeftWidget:
-                        icon: "github"
-
-                OneLineAvatarIconListItem:
-                    on_release: print("Click 2!")
-
-                    IconLeftWidget:
-                        icon: "gitlab"
 
         MDBottomNavigationItem:
             name: 'screen 3'
@@ -55,14 +55,30 @@ MDScreen:
             MDLabel:
                 id: email
                 text: ''
-                halign: 'center'
+                pos_hint: {"center_x": .5, "center_y": .60}
+                halign: "center"
+                font_name: "BPoppins"
             MDLabel:
                 id: name
                 text: ''
-                halign: 'center'
+                pos_hint: {"center_x": .5, "center_y": .50}
+                halign: "center"
+                font_name: "BPoppins"
             MDLabel:
                 id: phone
                 text: ''
-                halign: 'center'
+                pos_hint: {"center_x": .5, "center_y": .40}
+                halign: "center"
+                font_name: "BPoppins"
+            MDIconButton:
+                icon: 'exit-to-app'
+                pos_hint: {"center_x": .5, "center_y": .26}
+                on_release:
+                    app.logout()
+                    root.manager.transition.direction = "left"
+                    root.manager.current = "main"
+
+
+
                 
         

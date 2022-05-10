@@ -9,7 +9,7 @@ class Item(ma.Schema):
     class meta:
         ordering = True
 
-    email=ma.fields.Str()
+    email=ma.fields.Email()
     password=ma.fields.Str()
 
 PREFIX_DOMAIN= "http://14.225.254.88:5000/v1"

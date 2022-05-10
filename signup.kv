@@ -1,7 +1,5 @@
 #:kivy 2.1.0
-MDScreen:
-    id: signup
-    name: "signup"
+<Signup> :
     MDFloatLayout:
         md_bg_color: 1, 1, 1, 1
         MDIconButton:
@@ -28,7 +26,7 @@ MDScreen:
         # Email Box
         MDFloatLayout:
             size_hint: .7, .07
-            pos_hint: {"center_x": .5, "center_y": .73}
+            pos_hint: {"center_x": .5, "center_y": .70}
             TextInput:
                 id: email
                 hint_text: "Email"
@@ -46,13 +44,10 @@ MDScreen:
             # Mau vien duoi
                 md_bg_color: rgba(65, 105, 225, 255)
         
-        MDFloatLayout:
-            size_hint: .7, .07
-            pos_hint: {"center_x": .5, "center_y": .65}
 
         MDFloatLayout:
             size_hint: .7, .07
-            pos_hint: {"center_x": .5, "center_y": .57}
+            pos_hint: {"center_x": .5, "center_y": .60}
             TextInput:
                 id: phone
                 hint_text: "Phone"
@@ -72,7 +67,7 @@ MDScreen:
 
         MDFloatLayout:
             size_hint: .7, .07
-            pos_hint: {"center_x": .5, "center_y": .49}
+            pos_hint: {"center_x": .5, "center_y": .50}
             TextInput:
                 id: name
                 hint_text: "Name"
@@ -113,7 +108,7 @@ MDScreen:
         
         MDFloatLayout:
             size_hint: .7, .07
-            pos_hint: {"center_x": .5, "center_y": .33}
+            pos_hint: {"center_x": .5, "center_y": .30}
             TextInput:
                 id: pw2
                 hint_text: "Confirm password"
