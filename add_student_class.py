@@ -1,6 +1,34 @@
 import tkinter as tk
 import execute_api.add_student_class as astc
+import cv2
+import numpy as np
+import os
+from PIL import Image
 
+
+UPLOAD_FOLDER = os.path.join(os.path.abspath(
+    os.path.dirname(os.path.dirname(__file__))), 'hello_n/static/images')
+
+SAVE_FOLDER=os.path.join(os.path.abspath(
+    os.path.dirname(os.path.dirname(__file__))), 'hello_n/static/files')
+
+def get_image_id(path):
+    image_path = []
+    for i in os.listdir(path):
+        image_path.append(os.path.join(path, i))
+
+    faces = []
+    ids = []
+    for i in image_path:
+        face_image = Image.open(i).convert('L')
+        face_np = np.array(face_image, 'uint8')
+        id = int(i.split('-')[0].split('/')[-1])
+        faces.append(face_np)
+        ids.append(id)
+        # cv2.imshow('TRAINING', face_np)
+        cv2.waitKey(10)
+        
+    return faces, ids
 
 class AddStudentClassPage(tk.Frame):
 
@@ -13,6 +41,7 @@ class AddStudentClassPage(tk.Frame):
         self.class_id = datas[0]['class_id']
         self.student_id = ""
         self.init_UI()
+        print(UPLOAD_FOLDER)
 
     def init_UI(self):
         label_title = tk.Label(self, text="REGISTER STUDENT")
@@ -71,7 +100,7 @@ class AddStudentClassPage(tk.Frame):
                 self.at, email, student_id, name, self.class_id)
             print(response)
             if response['status'] == 200:
-                self.student_id = response['data']['id']
+                self.student_id = student_id
                 self.button_register.pack_forget()
                 self.button_back.pack_forget()
                 self.button_register_face.pack()
@@ -82,7 +111,42 @@ class AddStudentClassPage(tk.Frame):
             self.label_notice['text'] = "SERVER ERROR"
 
     def exe_register_student_face(self):
-        pass
+        face_cascade = cv2.CascadeClassifier(
+            cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+        cap = cv2.VideoCapture(0)
+        index = 0
+        while True:
+            ret, frame = cap.read()
+            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            faces = face_cascade.detectMultiScale(gray)
+            for (x, y, w, h) in faces:
+                cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 225, 0), 2)
+                index = index+1
+                cv2.imwrite(UPLOAD_FOLDER+"/"+self.student_id+"-"+str(index) +
+                            ".jpg", gray[y: y+h, x: x+w])
+
+            cv2.imshow('DETECTING FACE', frame)
+            cv2.waitKey(1)
+            if index >= 100:
+                break
+        cap.release()
+        cv2.destroyAllWindows()
+        self.button_register_face.pack_forget()
+        self.label_notice['text'] = "Training......................."
+        self.train_image()
+        self.label_notice['text'] = "Done"
+        self.button_back.pack()
+    
+    def train_image(self):
+        recognizer = cv2.face.LBPHFaceRecognizer_create()
+        faces, ids = get_image_id(UPLOAD_FOLDER)
+        recognizer.train(faces, np.array(ids))
+        #delete_old_files
+        try:
+            os.remove(SAVE_FOLDER+"/me.yml")
+        except:
+            pass
+        recognizer.save(SAVE_FOLDER+"/me.yml")
 
     def done(self):
         pass
