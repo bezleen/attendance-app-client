@@ -50,4 +50,5 @@ Thumbs.db
 
 /venv
 __pycache__
-/static
+/static/files/*.yml
+/static/images/*.jpg

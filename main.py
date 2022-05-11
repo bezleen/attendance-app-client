@@ -9,6 +9,7 @@ from class_page import ClassPage
 from detail_class_page import DetailClassPage
 from add_student_class import AddStudentClassPage
 from take_attendance import TakeAttendancePage
+from add_class import AddClassPage
 class App(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)

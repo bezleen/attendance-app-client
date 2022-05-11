@@ -20,19 +20,9 @@ class ClassPage(tk.Frame):
             self, text="HOME", command=lambda: self.controller.show_frame(self.container, "HomePage", self.at, self.rt))
         button_home.configure(width=10, bg="orange")
         button_add = tk.Button(
-            self, text="ADD ClASS")
+            self, text="ADD ClASS",command=lambda: self.controller.show_frame(self.container, "AddClassPage", self.at, self.rt))
         button_add.configure(width=10, bg="orange")
-        # button_attendance = tk.Button(self, text="ATTENDANCE", command=lambda: self.controller.show_frame("StartPage"))
-        # button_attendance.configure(width=10, bg="orange")
-        # button_attendance = tk.Button(self, text="SIGN IN", command=self.exe_signup)
-        # button_log.configure(width=10, bg="orange")
-        # button_back = tk.Button(self, text="BACK", command=lambda: self.controller.show_frame("StartPage"))
-        # button_back.configure(width=10, bg="orange")
-        # button_log = tk.Button(self, text="SIGN IN", command=self.exe_signup)
-        # button_log.configure(width=10, bg="orange")
-        # button_back = tk.Button(self, text="BACK", command=lambda: self.controller.show_frame("StartPage"))
-        # button_back.configure(width=10, bg="orange")
-        # button_home.pack()
+
         button_home.pack()
         button_add.pack()
 
@@ -55,6 +45,5 @@ class ClassPage(tk.Frame):
                     )
                     button_class.configure(width=50, bg="lightblue")
                     button_class.pack()
-
         except:
             pass

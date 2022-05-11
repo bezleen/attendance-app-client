@@ -1,6 +1,6 @@
 import tkinter as tk
 import execute_api.take_attendance as ta
-
+import execute_api.add_student_into_class as atic
 
 class TakeAttendancePage(tk.Frame):
 
@@ -37,6 +37,12 @@ class TakeAttendancePage(tk.Frame):
             self, text="CONFIRM", command=self.take_attendance)
         self.button_confirm.configure(width=10, bg="orange")
         
+
+        self.button_join = tk.Button(
+            self, text="JOIN", command=self.join_class)
+        self.button_join.configure(width=10, bg="orange")
+
+
         self.button_back = tk.Button(self, text="BACK", command=lambda: self.controller.show_frame(
             self.container,
             "DetailClassPage",
@@ -69,7 +75,29 @@ class TakeAttendancePage(tk.Frame):
             response=ta.add_sheet(self.at,self.student_oid,self.class_id)
             if response['status'] == 200:
                 self.label_notice['text'] = response['msg']
+            elif response['status'] == 400 and response['msg'] == "Student not in class": 
+                self.label_notice['text'] = "You're not in this class, do you want to join?"
+                #hien nut join
+                self.button_join.pack()
+                #an nut confirm
+                self.button_confirm.pack_forget()
+        except:
+            self.label_notice['text'] = "Server error"
+    def join_class(self):
+        #add vao lop
+        try:
+            response=atic.add_student_into_class(self.at,self.student_oid,self.class_id)
+            if response['status'] == 200:
+                self.label_notice['text'] = response['msg']
+                #an nut join
+                self.button_join.pack_forget()
+                #hien nut confirm
+                self.button_confirm.pack()
             else:
                 self.label_notice['text'] = response['msg']
         except:
             self.label_notice['text'] = "Server error"
+
+
+
+        
