@@ -10,7 +10,7 @@ from PIL import Image
 DOMAIN = 'http://14.225.254.88:5000/v1/'
 # DOMAIN = 'http://localhost:5000/v1/'
 UPLOAD_FOLDER = os.path.join(os.path.abspath(
-    os.path.dirname(os.path.dirname(__file__))), 'src/static/uploads')
+    os.path.dirname(os.path.dirname(__file__))), 'src/static/images')
 
 
 # INPUT
