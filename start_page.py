@@ -25,6 +25,8 @@ class StartPage(tk.Frame):
         button_log.configure(width=10, bg="orange")
         button_sig = tk.Button(self, text="SIGN UP", command= lambda: self.controller.show_frame(self.container,"RegisterPage",self.at,self.rt))
         button_sig.configure(width=10, bg="orange")
+        button_fpwd = tk.Button(self, text="FORGOT PWD", command= lambda: self.controller.show_frame(self.container,"ResetPasswordPage",self.at,self.rt))
+        button_fpwd.configure(width=10, bg="orange")
         #show
         label_title.pack()
         label_user.pack()
@@ -35,12 +37,13 @@ class StartPage(tk.Frame):
 
         button_log.pack()
         button_sig.pack()
+        button_fpwd.pack()
 
     def exe_login(self):
-        # email = self.entry_user.get()
-        # password = self.entry_pw.get()
-        email="hiendang@heallios.com"
-        password = "123456"
+        email = self.entry_user.get()
+        password = self.entry_pw.get()
+        # email="hiendang@heallios.com"
+        # password = "456789"
         try:
             response = lg.exec_login(email, password)
             if response['status'] == 200:
