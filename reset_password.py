@@ -34,6 +34,8 @@ class ResetPasswordPage(tk.Frame):
 
         self.button_next2 = tk.Button(self, text="NEXT", command=self.exe_check_otp)
         self.button_next2.configure(width=10, bg="orange")
+        self.button_resend = tk.Button(self, text="RESEND", command=self.exe_resend_otp)
+        self.button_resend.configure(width=10, bg="orange")
 
         self.button_next3 = tk.Button(self, text="NEXT", command=self.exe_reset_password)
         self.button_next3.configure(width=10, bg="orange")
@@ -75,6 +77,26 @@ class ResetPasswordPage(tk.Frame):
                     self.label_otp.pack()
                     self.entry_otp.pack()
                     self.button_next2.pack()
+                    self.button_resend.pack()
+                else:
+                    self.label_notice['text'] = response['msg']
+            except:
+                self.label_notice['text'] = "ERROR"
+        else:
+            self.label_notice['text'] = "Please entry email"
+    def exe_resend_otp(self):
+        if self.email:
+            try:
+                response=so.exec_send_otp(self.email)
+                if response['status'] == 200:
+                    self.label_email.pack_forget()
+                    self.entry_email.pack_forget()
+                    self.button_next1.pack_forget()
+                    self.label_notice['text'] = "Check your email to get OTP"
+                    self.label_otp.pack()
+                    self.entry_otp.pack()
+                    self.button_next2.pack()
+                    self.button_resend.pack()
                 else:
                     self.label_notice['text'] = response['msg']
             except:
@@ -91,6 +113,7 @@ class ResetPasswordPage(tk.Frame):
                     self.label_otp.pack_forget()
                     self.entry_otp.pack_forget()
                     self.button_next2.pack_forget()
+                    self.button_resend.pack_forget()
                     self.label_notice['text'] = "You have 2 minute to change your password"
                     self.label_pw.pack()
                     self.entry_pw.pack()

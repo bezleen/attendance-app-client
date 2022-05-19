@@ -63,7 +63,7 @@ class DetailClassPage(tk.Frame):
         button_absent.configure(width=10, bg="lightblue")
 
         button_attendance = tk.Button(
-            self, text="NOT ABSENT", command=self.list_attendance_attendance)
+            self, text="PRESENT", command=self.list_attendance_attendance)
         button_attendance.configure(width=10, bg="lightblue")
 
         button_add_student = tk.Button(
@@ -224,7 +224,7 @@ class DetailClassPage(tk.Frame):
                         cv2.putText(frame, email, (x+10, y+h+90),
                                     fontface, 1, (0, 255, 0), 2)
                 else:
-                    cv2.putText(frame, "Unknow", (x+10, h+h+30),
+                    cv2.putText(frame, "Unknown", (x+10, h+h+30),
                                 fontface, 1, (0, 0, 225), 2)
             cv2.imshow('DETECTING FACE', frame)
             if cv2.waitKey(1) == ord('q'):

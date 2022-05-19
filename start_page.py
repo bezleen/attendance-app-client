@@ -1,6 +1,6 @@
 import tkinter as tk
 import execute_api.login as lg
-
+import execute_api.refresh as rf
 
 class StartPage(tk.Frame):
 
@@ -49,6 +49,7 @@ class StartPage(tk.Frame):
             if response['status'] == 200:
                 self.at = response['data']['access_token']
                 self.rt = response['data']['refresh_token']
+                rf.write_token(self.at, self.rt)
                 #chuyen vao home page
                 # self.controller.init_all_page(self.container,self.at, self.rt)
                 self.controller.show_frame(self.container,"HomePage",self.at, self.rt)
