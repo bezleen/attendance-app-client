@@ -15,7 +15,7 @@ class ClassPage(tk.Frame):
         self.display_data()
 
     def init_UI(self):
-
+        
         button_home = tk.Button(
             self, text="HOME", command=lambda: self.controller.show_frame(self.container, "HomePage", self.at, self.rt))
         button_home.configure(width=10, bg="orange")

@@ -100,6 +100,8 @@ class DetailClassPage(tk.Frame):
         self.label_notice.grid(row=6, column=1)
 
     def list_attendance_all(self):
+        self.check_current_token()
+
         self.label_notice['text'] = ""
         # check date
         state = "all"
@@ -122,6 +124,8 @@ class DetailClassPage(tk.Frame):
             pass
 
     def list_attendance_absent(self):
+        self.check_current_token()
+
         self.label_notice['text'] = ""
         # check date
         state = "absent"
@@ -144,6 +148,8 @@ class DetailClassPage(tk.Frame):
             pass
 
     def list_attendance_attendance(self):
+        self.check_current_token()
+
         self.label_notice['text'] = ""
         # check date
         state = "attendance"
@@ -166,6 +172,7 @@ class DetailClassPage(tk.Frame):
             pass
 
     def del_table(self):
+
         datas = self.class_datas
         height = len(datas)
         width = 3
@@ -174,6 +181,8 @@ class DetailClassPage(tk.Frame):
                 self.nametowidget(str(i-8)+"-"+str(j)).destroy()
 
     def draw_table(self):
+        self.check_current_token()
+
         columns = ["Email", "Name", "Student Id"]
         for i in range(len(columns)):
             b = tk.Entry(self, width=44, bg='LightSteelBlue', fg='Black',
@@ -196,6 +205,7 @@ class DetailClassPage(tk.Frame):
                     b.insert(tk.END, datas[i-8]['student_id'])
 
     def take_attendance(self):
+        
         face_cascade = cv2.CascadeClassifier(
             cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
         recognizer = cv2.face.LBPHFaceRecognizer_create()
