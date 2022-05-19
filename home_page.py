@@ -17,7 +17,7 @@ class HomePage(tk.Frame):
         # button_logout = tk.Button(self, text="LOGOUT",command=lambda: self.controller.show_frame(self.container,"StartPage",self.at,self.rt))
         button_logout = tk.Button(self, text="LOGOUT",command=self.logout)
         button_logout.configure(width=10, bg="orange")
-        button_profile = tk.Button(self, text="PROFILE")
+        button_profile = tk.Button(self, text="PROFILE",command=lambda: self.controller.show_frame(self.container,"ProfilePage",self.at,self.rt))
         button_profile.configure(width=10, bg="orange")
 
         button_class.pack()

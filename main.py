@@ -11,6 +11,7 @@ from add_student_class import AddStudentClassPage
 from take_attendance import TakeAttendancePage
 from add_class import AddClassPage
 from reset_password import ResetPasswordPage
+from profile import ProfilePage
 
 # PATH_AT='access_token.txt'
 # PATH_RT='refresh_token.txt'
