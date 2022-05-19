@@ -1,7 +1,7 @@
 import tkinter as tk
 from unicodedata import name
 import execute_api.list_class as lc
-
+import execute_api.refresh as rf
 
 class ClassPage(tk.Frame):
 
@@ -27,6 +27,8 @@ class ClassPage(tk.Frame):
         button_add.pack()
 
     def display_data(self):
+        self.check_current_token()
+
         # get data
         try:
             response = lc.exec_list_class(self.at)
@@ -47,3 +49,13 @@ class ClassPage(tk.Frame):
                     button_class.pack()
         except:
             pass
+    
+    def check_current_token(self):
+        new_at,new_rt,status= rf.check_token(self.at,self.rt)
+        if not new_at and not new_rt and not status:
+            pass
+        elif new_at and new_rt and not status:
+            self.at = new_at
+            self.rt = new_rt
+        elif not new_at and not new_rt and status=='restart':
+            self.controller.show_frame(self.container,"StartPage",self.at,self.rt)

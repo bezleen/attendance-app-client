@@ -1,7 +1,7 @@
 import tkinter as tk
 import execute_api.take_attendance as ta
 import execute_api.add_student_into_class as atic
-
+import execute_api.refresh as rf
 class TakeAttendancePage(tk.Frame):
 
     def __init__(self, parent, controller, at=None, rt=None, datas=[]):
@@ -70,6 +70,8 @@ class TakeAttendancePage(tk.Frame):
 
     
     def take_attendance(self):
+        self.check_current_token()
+
         #check student inclass
         try:
             response=ta.add_sheet(self.at,self.student_oid,self.class_id)
@@ -84,6 +86,7 @@ class TakeAttendancePage(tk.Frame):
         except:
             self.label_notice['text'] = "Server error"
     def join_class(self):
+        self.check_current_token()
         #add vao lop
         try:
             response=atic.add_student_into_class(self.at,self.student_oid,self.class_id)
@@ -100,4 +103,13 @@ class TakeAttendancePage(tk.Frame):
 
 
 
-        
+    def check_current_token(self):
+        new_at,new_rt,status= rf.check_token(self.at,self.rt)
+        if not new_at and not new_rt and not status:
+            pass
+        elif new_at and new_rt and not status:
+            self.at = new_at
+            self.rt = new_rt
+        elif not new_at and not new_rt and status=='restart':
+            self.controller.show_frame(self.container,"StartPage",self.at,self.rt)
+

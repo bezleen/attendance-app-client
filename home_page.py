@@ -28,3 +28,12 @@ class HomePage(tk.Frame):
     def logout(self):
         rf.write_token('','')
         self.controller.show_frame(self.container,"StartPage",self.at,self.rt)
+    def check_current_token(self):
+        new_at,new_rt,status= rf.check_token(self.at,self.rt)
+        if not new_at and not new_rt and not status:
+            pass
+        elif new_at and new_rt and not status:
+            self.at = new_at
+            self.rt = new_rt
+        elif not new_at and not new_rt and status=='restart':
+            self.controller.show_frame(self.container,"StartPage",self.at,self.rt)

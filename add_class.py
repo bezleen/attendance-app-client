@@ -4,7 +4,7 @@ import numpy as np
 import os
 from PIL import Image
 import execute_api.add_class as ac
-
+import execute_api.refresh as rf
 class AddClassPage(tk.Frame):
 
     def __init__(self, parent, controller, at=None, rt=None, datas=[]):
@@ -48,6 +48,8 @@ class AddClassPage(tk.Frame):
         self.button_back.pack()
 
     def add(self):
+        self.check_current_token()
+
         #check null
         name = self.entry_classname.get()
         if not name:
@@ -61,3 +63,13 @@ class AddClassPage(tk.Frame):
                 self.label_notice['text'] = response['msg']
         except:
             self.label_notice['text'] = response['SERVER ERROR']
+
+    def check_current_token(self):
+        new_at,new_rt,status= rf.check_token(self.at,self.rt)
+        if not new_at and not new_rt and not status:
+            pass
+        elif new_at and new_rt and not status:
+            self.at = new_at
+            self.rt = new_rt
+        elif not new_at and not new_rt and status=='restart':
+            self.controller.show_frame(self.container,"StartPage",self.at,self.rt)

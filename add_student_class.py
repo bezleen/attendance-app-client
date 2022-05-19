@@ -4,7 +4,7 @@ import cv2
 import numpy as np
 import os
 from PIL import Image
-
+import execute_api.refresh as rf
 
 UPLOAD_FOLDER = os.path.join(os.path.abspath(
     os.path.dirname(os.path.dirname(__file__))), 'hello_n/static/images')
@@ -89,6 +89,8 @@ class AddStudentClassPage(tk.Frame):
         self.button_back.pack()
 
     def exe_register_student(self):
+        self.check_current_token()
+
         email = self.entry_email.get()
         name = self.entry_name.get()
         student_id = self.entry_student_id.get()
@@ -149,4 +151,16 @@ class AddStudentClassPage(tk.Frame):
         recognizer.save(SAVE_FOLDER+"/me.yml")
 
     def done(self):
+        self.check_current_token()
+
         pass
+    def check_current_token(self):
+        new_at,new_rt,status= rf.check_token(self.at,self.rt)
+        if not new_at and not new_rt and not status:
+            pass
+        elif new_at and new_rt and not status:
+            self.at = new_at
+            self.rt = new_rt
+        elif not new_at and not new_rt and status=='restart':
+            self.controller.show_frame(self.container,"StartPage",self.at,self.rt)
+
