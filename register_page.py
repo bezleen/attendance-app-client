@@ -23,8 +23,8 @@ class RegisterPage(tk.Frame):
         self.entry_email = tk.Entry(self, width=20, bg="light yellow")
         self.entry_phone = tk.Entry(self, width=20, bg="light yellow")
         self.entry_username = tk.Entry(self, width=20, bg="light yellow")
-        self.entry_pw = tk.Entry(self, width=20, bg="light yellow")
-        self.entry_cfpw = tk.Entry(self, width=20, bg="light yellow")
+        self.entry_pw = tk.Entry(self,show='*', width=20, bg="light yellow")
+        self.entry_cfpw = tk.Entry(self,show='*', width=20, bg="light yellow")
 
         button_log = tk.Button(self, text="SIGN IN", command=self.exe_signup)
         button_log.configure(width=10, bg="orange")

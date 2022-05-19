@@ -19,7 +19,7 @@ class StartPage(tk.Frame):
         #entry
         self.label_notice = tk.Label(self, text="", bg="orange")
         self.entry_user = tk.Entry(self, width=20, bg="light yellow")
-        self.entry_pw = tk.Entry(self, width=20, bg="light yellow")
+        self.entry_pw = tk.Entry(self,show='*', width=20, bg="light yellow")
         #button
         button_log = tk.Button(self, text="LOG IN", command=self.exe_login)
         button_log.configure(width=10, bg="orange")

@@ -26,8 +26,8 @@ class ResetPasswordPage(tk.Frame):
 
         self.entry_email = tk.Entry(self, width=20, bg="light yellow")
         self.entry_otp = tk.Entry(self, width=20, bg="light yellow")
-        self.entry_pw = tk.Entry(self, width=20, bg="light yellow")
-        self.entry_cfpw = tk.Entry(self, width=20, bg="light yellow")
+        self.entry_pw = tk.Entry(self,show='*', width=20, bg="light yellow")
+        self.entry_cfpw = tk.Entry(self,show='*', width=20, bg="light yellow")
 
         self.button_next1 = tk.Button(self, text="NEXT", command=self.exe_send_otp)
         self.button_next1.configure(width=10, bg="orange")
